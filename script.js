@@ -39,25 +39,6 @@ const displayCategories = (categories)=>{
 }
 
 
-// {
-//     "status": true,
-//     "message": "successfully fetched all the pets data",
-//     "pets": [
-//       {
-//         "petId": 1,
-//         "breed": "Golden Retriever",
-//         "category": "Dog",
-//         "date_of_birth": "2023-01-15",
-//         "price": 1200,
-//         "image": "https://i.ibb.co.com/p0w744T/pet-1.jpg",
-//         "gender": "Male",
-//         "pet_details": "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
-//         "vaccinated_status": "Fully",
-//         "pet_name": "Sunny"
-//       },
-// }
-
-
 // Load All Pets 
 const loadPets = async() =>{
     document.getElementById('spinner').style.display='none';
@@ -74,48 +55,49 @@ try{
 const loadPetByCategory =async (category) =>{
     document.getElementById('spinner').style.display='block';
     setTimeout(async ()=>{
-        const liked = async(image) =>{
 
-            try{
-                const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
-                const data = await response.json();
-    
-                    displayAllPets(data.data)
-                    likedPet(data.data)
-                    if(data.data.length === 0){
-                        const petContainer = document.getElementById("display-pet");
-                        petContainer.classList.remove("grid");
-                        const div = document.createElement('div');
-                        div.innerHTML=`
-                        <div class="  ">
-                        <div class="text-center ">
-                        <img class="w-1/3 container mx-auto" src="./images/error.webp"/>
-                        <h3 class="text-xl mt-4 font-bold">No Information Available</h3>
-                        <p>Oops❗We couldn't find any relevant data. Please double-check your input or try again later.</p>
-                        </div>
-                        </div>
-                        `
-                        petContainer.appendChild(div)
-                    }
-     
-            }catch(error){
-                console.log('Failed to load Data', error)
-            }
+        try{
+            const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+            const data = await response.json();
+
+                displayAllPets(data.data)
+                document.getElementById('liked-pets').innerHTML = ''; 
+                if(data.data.length === 0){
+                    const petContainer = document.getElementById("display-pet");
+                    petContainer.classList.remove("grid");
+                    const div = document.createElement('div');
+                    div.innerHTML=`
+                    <div class="  ">
+                    <div class="text-center ">
+                    <img class="w-1/3 container mx-auto" src="./images/error.webp"/>
+                    <h3 class="text-xl mt-4 font-bold">No Information Available</h3>
+                    <p>Oops❗We couldn't find any relevant data. Please double-check your input or try again later.</p>
+                    </div>
+                    </div>
+                    `
+                    petContainer.appendChild(div)
+                }
+ 
+        }catch(error){
+            console.log('Failed to load Data', error)
         }
         document.getElementById('spinner').style.display='none';
     },2000)
  
 }
 // Show Liked Pets
-const likedPet = (image) =>{
+const likedPet = (image) => {
     const likeContainer = document.getElementById('liked-pets');
 
-    const div = document.createElement('div');
-    div.innerHTML=`
-    <img src="${image}"/>
-    `
-    likeContainer.appendChild(div)
+    // Check if the image is already liked
+    const existingImage = likeContainer.querySelector(`img[src="${image}"]`);
+    if (existingImage) {
+        return; 
+    }
 
+    const div = document.createElement('div');
+    div.innerHTML = `<img src="${image}" class=" rounded-xl m-1" />`;
+    likeContainer.appendChild(div);
 }
 // Disible addopt button
 
@@ -179,6 +161,7 @@ const displayAllPets = (pets) =>{
         
         const petContainer = document.getElementById("display-pet");
         const div = document.createElement('div');
+        div.setAttribute("data-price", price);
             div.innerHTML=`
             <div class="col-span1 md:col-span-2 lg:col-span-3 ">
             <div class="card min-h-96 bg-base-100  shadow-xl">
@@ -214,6 +197,20 @@ const displayAllPets = (pets) =>{
         
     })
 }
+const sortPetsByPrice = () => {
+    const petContainer = document.getElementById("display-pet");
+    let pets = Array.from(petContainer.children); // Convert HTMLCollection to an array
+
+    pets.sort((a, b) => {
+        let priceA = parseFloat(a.getAttribute("data-price")); // Get price from data-price attribute
+        let priceB = parseFloat(b.getAttribute("data-price"));
+        return priceA - priceB; // Sort in ascending order (small to large)
+    });
+
+    petContainer.innerHTML = ""; // Clear the container
+    pets.forEach(pet => petContainer.appendChild(pet)); // Re-append the sorted pets
+};
+
 loadPets()
 
 
