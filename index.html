@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawtopia</title>
+    <link rel="shortcut icon" href="./images/logo.webp" type="image/x-icon">
+    <!-- CDN And Tailwind  -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@4.12.11/dist/full.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <!-- Css -->
+   <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="mx-auto container lato">
+<!-- Header Section -->
+        <header>
+<!-- Navbar Design -->
+            <nav>
+                <div class="navbar bg-base-100 ">
+                    <div class="navbar-start">
+                      <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M4 6h16M4 12h8m-8 6h16" />
+                          </svg>
+                        </div>
+                        <ul
+                          tabindex="0"
+                          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                          <li><a>Home</a></li>
+                          <li>
+                            <a>Shop</a>
+                          </li>
+                          <li><a>Contact</a></li>
+                        </ul>
+                      </div>
+                      <img src="./images/logo.webp" alt="">
+                      <a class="btn btn-ghost text-2xl font-bold ">Pawtopia</a>
+                    </div>
+                    <div class="navbar-center hidden lg:flex">
+                      <ul class="menu menu-horizontal px-1">
+                        <li><a>Home</a></li>
+                        <li>
+                          <details>
+                            <summary>Shop</summary>
+                          </details>
+                        </li>
+                        <li><a>Contact</a></li>
+                      </ul>
+                    </div>
+                    <div class="navbar-end">
+                        <img class="w-10" src="./images/user.png" alt="">
+                    </div>
+                  </div>
+            </nav>
+    <!-- Banner Section Design -->
+        <div class="mt-9">
+            <div class="w-1/2 mx-auto container ">
+                <h4 class="font-serif text-center text-gray-500" >Bringing Families Together 🔥</h4>
+                <h1 class="font-bold text-3xl p-2 text-center">Your Path to Adoption Starts Here</h1>
+                <h3 class="font-serif text-center text-gray-600">Explore our loving pets ready for adoption. Start your journey to a happier home today!Join our mission to find loving homes for every pet.</h3>
+                <div class="flex justify-center mt-4 ">
+                    <button id="showMainBtn" class="btn  bg-green-600 text-lg text-white ">View More</button>
+                </div>
+                <div class="mt-3">
+                    <img src="./images/pet.webp" alt="">
+                </div>
+                <div>
+                    <h1 class="font-semibold text-3xl p-2 text-center">Adopt Your Best Friend</h1>
+                    <h3 class="font-serif text-center text-gray-500">Join us in the mission to connect loving families with their perfect pets. Adopt today!</h3>
+                </div>
+            </div>
+        </div>
+        </header>
+<!-- Main Secton -->
+        <main id="mainSection">
+<!-- Load Categories  -->
+            <nav id="categories" class="py-4 text-center flex justify-center gap-5"></nav>
+<!-- Short -->
+        <div class="flex mx-auto container justify-between">
+            <h3 class="text-xl font-bold py-4">Best Deal For You</h3>
+            <button class="btn  bg-green-600 text-lg text-white border-none">Sort by price</button>
+        </div>
+<!-- Spinner  -->
+<div class=" flex py-4 justify-center items-center">
+  <div id="spinner"></div>
+  </div>
+<!-- Display Pats -->
+            <div id="container" class="flex flex-col col-span-1 md:col-span-2 lg:col-span-3 md:flex-row lg:flex-row gap-6">
+               <div class="lg:w-3/4">
+                <div id="display-pet" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                </div>
+               </div>
+               <div class="lg:w-1/4   bg-gray-100 p-4 rounded">
+                <h3 class="text-xl font-bold text-center mb-4">Liked Pets</h3>
+                <div id="liked-pets" class="grid grid-cols-2 py-4 gap-3"></div>
+            </div>
+        </main>
+    </div>
+
+<!-- Details of Pet  -->
+<div>
+  <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="my_modal_2" class="modal">
+
+
+</dialog>
+</div>
+    <footer class="footer bg-neutral text-neutral-content p-10 my-8">
+    <div class="footer mx-auto container">
+        <nav>
+            <div class="flex items-center justify-center">
+                <img class="h-6 " src="./images/logo.webp" alt="">
+                <a class="btn btn-ghost text-2xl font-bold ">Pawtopia</a>
+            </div>
+            <h6 class="">Location: 12 no Dhamloi,Sreepur,Gazipur </h6>
+            <h6 class="">Phone: +8801234567890</h6>
+            <h6 class="">Email: pawtopia@gmailcom</h6>
+            <h6 class="">Openings hour: 9.00AM - 5.00PM</h6>
+            <div class="flex">
+                <a class="link link-hover"><img width="48" height="48" src="https://img.icons8.com/fluency/48/facebook.png" alt="facebook"/></a>
+                <a class="link link-hover"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx"/></a>
+                <a class="link link-hover"><img width="48" height="48" src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-play"/></a>
+                <a class="link link-hover"><img width="50" height="50" src="https://img.icons8.com/fluency/50/instagram-new.png" alt="instagram-new"/></a>
+            </div>
+        </nav>
+        <nav>
+            <h6 class="text-xl text-white py-2">Company</h6>
+            <a class="link link-hover">Home</a>
+            <a class="link link-hover">About us</a>
+            <a class="link link-hover">Animals</a>
+            <a class="link link-hover">Foundation</a>
+            <a class="link link-hover">Contact</a>
+          </nav>
+          <nav>
+            <h6 class="text-xl text-white py-2">Drop a Message</h6>
+            <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered input-success w-full max-w-xs" />
+            <button class="btn container mx-auto bg-green-600 text-lg text-white border-none">View More</button>
+          </nav>
+    </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
