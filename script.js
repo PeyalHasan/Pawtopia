@@ -11,8 +11,7 @@ try{
     const response = await fetch(`https://openapi.programming-hero.com/api/peddy/categories`);
     const data = await response.json();
 
-    const petContainer = document.getElementById('display-pet');
-    petContainer.innerHTML='';
+
 
     displayCategories(data.categories)
 }
@@ -74,32 +73,34 @@ try{
 // Load pet by category
 const loadPetByCategory =async (category) =>{
     document.getElementById('spinner').style.display='block';
-    setTimeout(async()=>{
+    setTimeout(async ()=>{
+        const liked = async(image) =>{
 
-        try{
-            const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
-            const data = await response.json();
-
-                displayAllPets(data.data)
-                likedPet(data.data)
-                if(data.data.length === 0){
-                    const petContainer = document.getElementById("display-pet");
-                    petContainer.classList.remove("grid");
-                    const div = document.createElement('div');
-                    div.innerHTML=`
-                    <div class="  ">
-                    <div class="text-center ">
-                    <img class="w-1/3 container mx-auto" src="./images/error.webp"/>
-                    <h3 class="text-xl mt-4 font-bold">No Information Available</h3>
-                    <p>Oops❗We couldn't find any relevant data. Please double-check your input or try again later.</p>
-                    </div>
-                    </div>
-                    `
-                    petContainer.appendChild(div)
-                }
- 
-        }catch(error){
-            console.log('Failed to load Data', error)
+            try{
+                const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+                const data = await response.json();
+    
+                    displayAllPets(data.data)
+                    likedPet(data.data)
+                    if(data.data.length === 0){
+                        const petContainer = document.getElementById("display-pet");
+                        petContainer.classList.remove("grid");
+                        const div = document.createElement('div');
+                        div.innerHTML=`
+                        <div class="  ">
+                        <div class="text-center ">
+                        <img class="w-1/3 container mx-auto" src="./images/error.webp"/>
+                        <h3 class="text-xl mt-4 font-bold">No Information Available</h3>
+                        <p>Oops❗We couldn't find any relevant data. Please double-check your input or try again later.</p>
+                        </div>
+                        </div>
+                        `
+                        petContainer.appendChild(div)
+                    }
+     
+            }catch(error){
+                console.log('Failed to load Data', error)
+            }
         }
         document.getElementById('spinner').style.display='none';
     },2000)
