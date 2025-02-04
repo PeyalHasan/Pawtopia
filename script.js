@@ -132,7 +132,7 @@ try{
     const modalContainer = document.getElementById('my_modal_2');
     
     modalContainer.innerHTML = `
-    <div class="modal-box">
+    <div class="modal-box shadow-black">
         <img src="${image}" alt="" class="rounded-xl" />
         <h2 class="text-2xl font-bold ">${pet_name}</h2>
      <div class="grid grid-cols-2">
@@ -177,7 +177,7 @@ const displayAllPets = (pets) =>{
         div.setAttribute("data-price", price);
             div.innerHTML=`
             <div class="col-span1 md:col-span-2 lg:col-span-3 ">
-            <div class="card min-h-96 bg-base-100  shadow-xl">
+            <div class="card  min-h-96 bg-base-100 shadow-md shadow-blue-200 ">
                 <figure class="px-10 pt-10">
                     <img
                     src="${image}"
